@@ -34,6 +34,6 @@ where X is set to 'true' or 'false' to indicate whether rosbag recording should 
 
 If recording is set to true, all topics except for /camera/* will be recorded for 15s and the output file will be saved to the results directory. These settings can be changed in the launch file. 
 
-The bag file can be inspected using 'rosbag info'. The bag file can be played back using 'rosbag play' and the walker can now be run independently without Gazebo.
+The bag file can be inspected using 'rosbag info'. The bag file can be played back using 'rosbag play' and the walker can now be run independently without Gazebo. To run a sample bag file, download from: https://drive.google.com/open?id=1gsMGmc-O9Cs-62TGM6QUza6kbIy-W9oV.
 
 
