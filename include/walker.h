@@ -8,12 +8,40 @@
 
 #include <math.h>
 #include <sstream>
-#include "ros/ros.h"
+#include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
+#include <sensor_msgs/LaserScan.h>
 
+/**
+ * @brief printString service callback function that returns a sentence with the name given in the request
+ * @param req Service request
+ * @param res Service response
+ * @return None
+ */
 class Walker {
-    private:
-
-
     public:
+        ros::NodeHandle nh;
 
+        // Subscriber for 2D LIDAR scan
+        ros::Subscriber laser_sub = nh.subscribe("scan", 10, &Walker::laserCallback, this);
+
+        // Publisher for mobile base velocity
+        ros::Publisher vel_pub = nh.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 1);
+
+        //Robot velocity message to be published
+        geometry_msgs::Twist robotVelocity;
+
+        // Default linear and turn speeds
+        defaultLinearSpeed = 0.15;      // m/s
+	    defaultAngularSpeed = 0.15;     // rad/s
+
+        // LIDAR distance within which the robot will execute a random turn
+        double safeDistance = 1;        // m
+
+        Walker();
+
+        void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
+
+        void randomTurn();
+    
 }
