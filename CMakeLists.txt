@@ -22,19 +22,14 @@ generate_messages(
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES beginner_tutorials
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
-)
+catkin_package()
 
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+    include
+    ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(walker src/main.cpp)
+add_executable(walker src/main.cpp src/walker.cpp)
 target_link_libraries(walker ${catkin_LIBRARIES})
 add_dependencies(walker turtlebot_walker_generate_messages_cpp)
 

@@ -10,25 +10,19 @@
 
 Walker::Walker() {
     robotVelocity.linear.x = defaultLinearSpeed;
-	robotVelocity.angular.z = defaultAngularSpeed;
+	robotVelocity.angular.z = 0;
 
     vel_pub.publish(robotVelocity);
 }
 
 void Walker::laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
-    // Initialize variables for metadata
-    int laserSize;			// number of array elements in laser field of view
-    int laserOffset;		// number of elements in one half of deisred field of view
-    int narrowLaserOffset;	// number of elements in one half of deisred narrow field of view
-
-    laserSize = (msg->angle_max - msg->angle_min)/msg->angle_increment;
-    laserOffset = desiredAngle*pi/(180*msg->angle_increment);
-    narrowLaserOffset = narrowDesiredAngle*pi/(180*msg->angle_increment);
+    // Number of array elements in laser field of view
+    int laserSize = (msg->angle_max - msg->angle_min)/msg->angle_increment;
 
     //Check LIDAR array for any readings below safeDistance
     for(int i = 1 ; i < laserSize ; i++) {
         // Reject corrupt readings
-        if (isnan(msg->ranges[i]) == false) {
+        if (std::isnan(msg->ranges[i]) == false) {
             if (msg->ranges[i] < safeDistance) {
                 randomTurn();
                 break;
@@ -55,7 +49,7 @@ void Walker::randomTurn() {
 	robotVelocity.angular.z = defaultAngularSpeed;
 
     // Keep turning until the random time is reached
-	while (secondsElapsed <= seconds) {
+	while (secondsElapsed <= randomSeconds) {
 		vel_pub.publish(robotVelocity);
 		//ros::spinOnce();
 		secondsElapsed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now()-start).count();

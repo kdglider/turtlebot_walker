@@ -6,8 +6,10 @@
  * @license    This project is released under the BSD-3-Clause License. See full details in LICENSE.
  */
 
-#include <math.h>
+#include <chrono>
 #include <sstream>
+#include <cmath>
+
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
@@ -32,8 +34,8 @@ class Walker {
         geometry_msgs::Twist robotVelocity;
 
         // Default linear and turn speeds
-        defaultLinearSpeed = 0.15;      // m/s
-	    defaultAngularSpeed = 0.15;     // rad/s
+        double defaultLinearSpeed = 0.15;      // m/s
+	    double defaultAngularSpeed = 0.5;     // rad/s
 
         // LIDAR distance within which the robot will execute a random turn
         double safeDistance = 1;        // m
@@ -44,4 +46,4 @@ class Walker {
 
         void randomTurn();
     
-}
+};
