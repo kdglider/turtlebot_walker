@@ -5,11 +5,10 @@ This project is a simple TurtleBot simulator in Gazebo that acts like a Roomba v
 ## Dependencies
 The system must run Ubuntu 16.04 that has C++11.
 
-The ROS Kinetic full desktop version can be installed using these instructions:
-http://wiki.ros.org/kinetic/Installation/Ubuntu
+The ROS Kinetic full desktop version can be installed using these instructions: http://wiki.ros.org/kinetic/Installation/Ubuntu
 
-The TurtleBot software can be install using these instructions:
-http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation
+The TurtleBot software can be install using these instructions: http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation
+
 Change all indigo text to kinetic and omit "ros-indigo-rocon-remocon" and "ros-indigo-rocon-qt-library" since these have equivalent in ROS Kinetic.
 
 
