@@ -41,8 +41,8 @@ void Walker::randomTurn() {
 	start = std::chrono::system_clock::now();
     uint64_t secondsElapsed = 0;
 
-    // Random time (between 1-5 seconds) to turn for
-    int randomSeconds = rand() % 5 + 1;
+    // Random time (between 1-3 seconds) to turn for
+    int randomSeconds = rand() % 3 + 1;
     
     // Change velcity profile to turning
     robotVelocity.linear.x = 0;
@@ -51,7 +51,6 @@ void Walker::randomTurn() {
     // Keep turning until the random time is reached
 	while (secondsElapsed <= randomSeconds) {
 		vel_pub.publish(robotVelocity);
-		//ros::spinOnce();
 		secondsElapsed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now()-start).count();
 	}
 
@@ -59,6 +58,5 @@ void Walker::randomTurn() {
     robotVelocity.linear.x = defaultLinearSpeed;
 	robotVelocity.angular.z = 0;
     vel_pub.publish(robotVelocity);
-	//ros::spinOnce();
 }
 

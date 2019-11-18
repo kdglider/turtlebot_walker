@@ -24,7 +24,7 @@ class Walker {
     public:
         ros::NodeHandle nh;
 
-        // Subscriber for 2D LIDAR scan
+        /** @brief Subscriber for 2D LIDAR scan */
         ros::Subscriber laser_sub = nh.subscribe("scan", 10, &Walker::laserCallback, this);
 
         // Publisher for mobile base velocity
@@ -34,16 +34,22 @@ class Walker {
         geometry_msgs::Twist robotVelocity;
 
         // Default linear and turn speeds
-        double defaultLinearSpeed = 0.15;      // m/s
-	    double defaultAngularSpeed = 0.5;     // rad/s
+        double defaultLinearSpeed = 0.3;      // m/s
+	    double defaultAngularSpeed = 0.8;     // rad/s
 
         // LIDAR distance within which the robot will execute a random turn
-        double safeDistance = 1;        // m
+        double safeDistance = 0.5;        // m
 
+        /** @brief Constructor that initializes the first robotVelocity publish */
         Walker();
 
+        /**
+         * @brief LIDAR callback function that determines if the robot is too close to an obstacle
+         * @param msg LaserScan message that contains an array with the depth readings
+         */
         void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
 
+        /** @brief Executes a turn for a constrained random amount of time */
         void randomTurn();
     
 };
