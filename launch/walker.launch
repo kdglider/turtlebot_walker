@@ -51,7 +51,7 @@
         pkg="rosbag" 
         type="record"
         name="rosbagRecord" 
-        args="--all --duration=15 --output-name=$(find turtlebot_walker)/results/output.bag"
+        args="--all --exclude='/camera/(.*)' --duration=15 --output-name=$(find turtlebot_walker)/results/output.bag"
     />
 
 </launch>
