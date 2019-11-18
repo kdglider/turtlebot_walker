@@ -6,13 +6,16 @@
  * @license    This project is released under the BSD-3-Clause License. See full details in LICENSE.
  */
 
-#include <chrono>
-#include <sstream>
-#include <cmath>
+#ifndef INCLUDE_WALKER_H_
+#define INCLUDE_WALKER_H_
 
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
+
+#include <cmath>
+#include <ctime>
+#include <sstream>
 
 /**
  * @brief printString service callback function that returns a sentence with the name given in the request
@@ -30,7 +33,7 @@ class Walker {
         // Publisher for mobile base velocity
         ros::Publisher vel_pub = nh.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 1);
 
-        //Robot velocity message to be published
+        // Robot velocity message to be published
         geometry_msgs::Twist robotVelocity;
 
         // Default linear and turn speeds
@@ -51,5 +54,8 @@ class Walker {
 
         /** @brief Executes a turn for a constrained random amount of time */
         void randomTurn();
-    
+
 };
+
+
+#endif  // INCLUDE_WALKER_H_

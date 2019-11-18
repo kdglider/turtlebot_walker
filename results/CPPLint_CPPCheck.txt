@@ -1,0 +1,36 @@
+CPPLint
+$ cpplint src/*.cpp
+Done processing src/main.cpp
+src/walker.cpp:13:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:40:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:41:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:45:  Consider using rand_r(...) instead of rand(...) for improved thread safety.  [runtime/threadsafe_fn] [2]
+src/walker.cpp:49:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:52:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:53:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:54:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:54:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+src/walker.cpp:55:  Tab found; better to use spaces  [whitespace/tab] [1]
+src/walker.cpp:59:  Tab found; better to use spaces  [whitespace/tab] [1]
+Done processing src/walker.cpp
+Total errors found: 11
+
+$ cpplint include/*.h
+include/walker.h:27:  public: should be indented +1 space inside class Walker  [whitespace/indent] [3]
+include/walker.h:31:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+include/walker.h:34:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+include/walker.h:41:  Tab found; better to use spaces  [whitespace/tab] [1]
+include/walker.h:46:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+include/walker.h:57:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+Done processing include/walker.h
+Total errors found: 6
+
+
+CPPCheck
+$ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+Checking src/main.cpp...
+1/2 files checked 18% done
+Checking src/walker.cpp...
+2/2 files checked 100% done
+
+
